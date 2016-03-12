@@ -3,4 +3,12 @@
 /public/storage
 Homestead.yaml
 Homestead.json
+/.idea
+
+# Laravel 5 & Lumen specific
+bootstrap/cache/
+storage/
+.env.*.php
+.env.php
 .env
+.env.example
