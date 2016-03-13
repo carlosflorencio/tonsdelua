@@ -1,4 +1,7 @@
+process.env.DISABLE_NOTIFIER = true;
+
 var elixir = require('laravel-elixir');
+require('laravel-elixir-browser-sync-simple');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,8 +14,16 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-     mix.less('app.less')
-     	.version('css/app.css')
-    	.copy('./node_modules/bootstrap-less/fonts', 'public/fonts');
+elixir(function (mix) {
+    mix.less('app.less')
+        .copy('./node_modules/bootstrap-less/fonts', 'public/fonts')
+        .scripts(['vendor/*.js', 'app.js'])
+        .version(['css/app.css', 'js/all.js'])
+        .browserSync({
+            proxy: 'tonsdelua.dev',
+            notify: true,
+            browser: "google-chrome-stable"
+
+        });
 });
+
