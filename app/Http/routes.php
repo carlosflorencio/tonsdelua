@@ -11,7 +11,18 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('pages.home');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Requirements
+|--------------------------------------------------------------------------
+*/
+Route::get('requirements', function() {
+
+    return App\Gata\Requirements::result();
 });
 
