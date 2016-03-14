@@ -4,9 +4,10 @@
 }
 .navbar-default {
   height: 44px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8) none;
   color: white;
   border-radius: 0;
+  box-shadow: 0;
 }
 .navbar-brand {
   height: 44px;
@@ -71,14 +72,15 @@
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .open > a {
-  background: transparent;
+  background: none;
+  box-shadow: none;
   text-decoration: underline;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus,
 .navbar-default .navbar-nav > .active > a:hover {
   color: white;
-  background-color: transparent;
+  background: none;
 }
 .navbar-default .in .navbar-nav > .active > a,
 .navbar-default .in .navbar-nav > .active > a:focus,
@@ -107,6 +109,24 @@
 }
 body {
   font-family: 'Lato', sans-serif;
+}
+.alt-grid [class*="col-"] {
+  padding-left: 0;
+  padding-right: 0;
+}
+.alt-grid .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+/* container adjusted */
+.alt-grid .container {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+.alt-grid .container-fluid {
+  padding-right: 0;
+  padding-left: 0;
 }
 
 /*# sourceMappingURL=app.css.map */

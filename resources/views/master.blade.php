@@ -17,16 +17,20 @@
         @stack('styles')
         <!-- /Styles -->
     </head>
-    <body>
+    <body data-responsejs='{
+      "create": [{
+        "prop": "width",
+        "prefix": "min-width- r src",
+        "breakpoints": [0, 768, 992, 1200]
+      }]
+    }'>
         <!--[if lte IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
         @include('modules.topbar')
 
-        <div class="container">
-            @yield('content')
-        </div>
+        @yield('content')
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
