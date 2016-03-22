@@ -32,6 +32,9 @@
 
         @yield('content')
 
+
+        @include('modules.footer')
+
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.1.min.js"><\/script>')</script>
