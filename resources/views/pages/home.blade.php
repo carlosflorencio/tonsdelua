@@ -4,9 +4,11 @@
 
 @section('content')
 
-    @include('modules.video')
+    @include('modules.slideshow')
 
     @include('modules.full-image')
+
+    @include('modules.video')
 
     @include('modules.multiple-images')
 

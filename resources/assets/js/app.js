@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     var videos = $('video');
 
     if (Response.band(0, 768)) { // mobile
@@ -20,7 +19,16 @@ $(document).ready(function () {
 
     videos.load();
 
+
+    $('.slide').slippry({
+        transition: 'horizontal',
+        speed: 400
+
+    });
+
 });
+
+
 
 // Mute youtube videos
 var tag = document.createElement('script');

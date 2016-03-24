@@ -1,10 +1,17 @@
+@import "vendor/slippry";
 @import "topbar";
 @import "footer";
 
+/* ==========================================================================
+   Master Styles
+   ========================================================================== */
 body {
   font-family: 'Lato', sans-serif;
 }
 
+/* ==========================================================================
+   Changes to bootstrap (remove padding from the columns)
+   ========================================================================== */
 .alt-grid [class*="col-"] {padding-left:0;padding-right:0}
 .alt-grid .row {margin-left:0;margin-right:0}
 
@@ -12,6 +19,9 @@ body {
 .alt-grid .container {width:100%;max-width:none;padding:0;}
 .alt-grid .container-fluid {padding-right:0; padding-left: 0;}
 
+/* ==========================================================================
+   Responsive video
+   ========================================================================== */
 .fix-video-space {
   font-size: 0;
   cursor: pointer;
@@ -37,3 +47,4 @@ video {
   width: 100%;
   height: 100%;
 }
+
