@@ -4,12 +4,12 @@
 
 @section('content')
 
+    @include('modules.multiple-images')
     @include('modules.slideshow')
 
     @include('modules.full-image')
 
     @include('modules.video')
 
-    @include('modules.multiple-images')
 
 @stop
