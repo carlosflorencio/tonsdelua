@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"/>
         <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+        <link rel="stylesheet" href="{{ url(elixir('css/app.css')) }}">
         @stack('styles')
         <!-- /Styles -->
     </head>
@@ -40,7 +40,7 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.1.min.js"><\/script>')</script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         @stack('scripts')
-        <script src="{{ elixir('js/all.js') }}"></script>
+        <script src="{{ url(elixir('js/all.js')) }}"></script>
         <!-- /Scripts -->
     </body>
 </html>
