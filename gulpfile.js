@@ -2,6 +2,7 @@
 
 var elixir = require('laravel-elixir');
 require('laravel-elixir-browser-sync-simple');
+require('laravel-elixir-vueify');
 
 /*
  |--------------------------------------------------------------------------
@@ -25,5 +26,6 @@ elixir(function (mix) {
             browser: "google-chrome-stable"
 
         });
+    mix.browserify('backend/app.js', 'public/js/backend/app.js');
 });
 

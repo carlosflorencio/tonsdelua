@@ -2,19 +2,23 @@
 
 /*
 |--------------------------------------------------------------------------
-| Routes File
+| Back End
 |--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
 */
+Route::group(['as' => 'admin::', 'prefix' => 'backend'], function () {
+    Route::get('/', ['as' => 'dashboard', 'uses'  => 'Admin\DashboardController@index']);
+});
 
 
+/*
+|--------------------------------------------------------------------------
+| Front End
+|--------------------------------------------------------------------------
+*/
 Route::get('/', function () {
     return view('pages.home');
 });
+
 
 /*
 |--------------------------------------------------------------------------
