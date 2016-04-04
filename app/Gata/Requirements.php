@@ -3,9 +3,9 @@
 
 class Requirements
 {
-    private static $php_version = '5.4'; //minimum
-    private static $required_extensions = ['fileinfo', 'pdo_mysql', 'mcrypt'];
-    private static $optional_extensions = ['curl', 'openssl', 'gd'];
+    private static $php_version = '5.5.9'; //minimum
+    private static $required_extensions = ['fileinfo', 'pdo_mysql', 'mcrypt', 'openssl', 'mbstring', 'tokenizer'];
+    private static $optional_extensions = ['curl', 'gd', 'iconv'];
 
     private static function extensionsNotLoaded(array $exts)
     {

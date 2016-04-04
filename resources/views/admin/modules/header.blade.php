@@ -23,7 +23,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="text-center">
-                                <a href="#" class="btn btn-default btn-flat">Sair</a>
+                                <a href="{{ route('admin::logout') }}" class="btn btn-default btn-flat">Sair</a>
                             </div>
                         </li>
                     </ul>
