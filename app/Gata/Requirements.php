@@ -3,10 +3,21 @@
 
 class Requirements
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Variables
+    |--------------------------------------------------------------------------
+    */
     private static $php_version = '5.5.9'; //minimum
     private static $required_extensions = ['fileinfo', 'pdo_mysql', 'mcrypt', 'openssl', 'mbstring', 'tokenizer'];
     private static $optional_extensions = ['curl', 'gd', 'iconv'];
+    private static $writable_dirs = ['public/upload', 'storage', 'bootstrap/cache'];
 
+    /*
+    |--------------------------------------------------------------------------
+    | Code
+    |--------------------------------------------------------------------------
+    */
     private static function extensionsNotLoaded(array $exts)
     {
         $res = [];
@@ -35,7 +46,7 @@ class Requirements
         if (self::validPHPVersion() == false) {
             $php_msg = self::message('PHP Version not valid: ' . PHP_VERSION . '. Should be >= ' . self::$php_version, false);
         } else {
-            $php_msg = self::message('PHP Version valid: ' . PHP_VERSION, true);
+            $php_msg = self::message('PHP Version valid: ' . PHP_VERSION . ' (' . self::$php_version . ')', true);
         }
         return self::toHTML($php_msg, $failedExtensions, $optinalExtensions);
     }
@@ -64,6 +75,12 @@ class Requirements
         $html .= '<ul>';
         foreach ($optionalExtensions as $failed) {
             $html .= '<li>' . $failed . '</li>';
+        }
+        $html .= '</ul>';
+        $html .= '<h5>Writable dirs:</h5>';
+        $html .= '<ul>';
+        foreach (self::$writable_dirs as $dir) {
+            $html .= '<li>' . self::message($dir, is_writable(base_path($dir))) . '</li>';
         }
         $html .= '</ul>';
         $html .= '<h5>Other Settings:</h5>';
