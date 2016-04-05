@@ -28,7 +28,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'backend';
+    protected $redirectTo = 'backend/dashboard';
     protected $loginView = 'admin.auth.login';
     protected $redirectAfterLogout = '/';
 

@@ -14,7 +14,12 @@ Route::group(['as' => 'admin::', 'prefix' => 'backend', 'middleware' => 'web'], 
         Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
 
         # Pages
-        Route::get('/', ['as' => 'dashboard', 'uses' => 'Admin\DashboardController@index']);
+        Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'Admin\DashboardController@index']);
+        Route::resource('products', 'Admin\ProductsController');
+
+        Route::get('/', function() {
+            return Redirect::route('admin::dashboard');
+        });
     });
 
 });
@@ -40,13 +45,6 @@ Route::get('test', function () {
     $image = App\Image::find(1);
     return $image->path;
 });
-
-
-/*
-|--------------------------------------------------------------------------
-| asdads
-|--------------------------------------------------------------------------
-*/
 
 /*
 |--------------------------------------------------------------------------

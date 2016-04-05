@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Tons de Lua - @yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -15,6 +16,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('backend-assets/dist/css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ url('backend-assets/dist/css/skins/skin-black.min.css') }}">
+    <link rel="stylesheet" href="{{ url('backend-assets/dist/css/custom.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -49,6 +51,7 @@
     <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{ url('backend-assets/dist/js/app.min.js') }}"></script>
+    <script src="{{ url('backend-assets/dist/js/anchorMethod.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
