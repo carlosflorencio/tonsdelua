@@ -16,6 +16,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('backend-assets/dist/css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ url('backend-assets/dist/css/skins/skin-black.min.css') }}">
+
+    @stack('styles')
     <link rel="stylesheet" href="{{ url('backend-assets/dist/css/custom.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

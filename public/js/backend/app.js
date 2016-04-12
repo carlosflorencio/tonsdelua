@@ -10247,42 +10247,104 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Vue = require('vue');
 
 new Vue({
-    el: "#app",
+    el: "#module-layout",
     components: {
         "my-row": _Row2.default
     },
     methods: {
         addLine: function addLine() {
+            if (this.modulesLeft == 0) {
+                alert("Não existem mais módulos disponiveis. Adicione mais!");
+                return;
+            }
+
             this.rows.push({
                 cols: [{
-                    title: "teste"
+                    module: 0
                 }]
             });
         },
         removeLines: function removeLines() {
+            for (var i = 0; i < this.modules.length; ++i) {
+                this.modules[i].used = false;
+            }
+
             this.rows = [];
+        },
+        setModuleUnused: function setModuleUnused(id) {
+            for (var j = 0; j < this.modules.length; ++j) {
+                if (this.modules[j].id == id) {
+                    this.modules[j].used = false;
+                    return;
+                }
+            }
+        },
+        sendData: function sendData() {
+            for (var r = 0; r < this.rows.length; r++) {
+                for (var c = 0; c < this.rows[r].cols.length; c++) {
+                    if (this.rows[r].cols[c].module == 0) {
+                        alert("Erro! Nenhum módulo pode ficar por escolher.");
+                        return;
+                    }
+                }
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "save-layout",
+                data: { rows: JSON.stringify(this.rows) },
+                dataType: 'json',
+                success: function success(res) {
+                    console.log(res);
+                    $('#append-result').append("<span class='to-remove'><i class='fa fa-check'></i>Sucesso!</span>");
+                    setTimeout(function () {
+                        $('.to-remove').remove();
+                    }, 2000);
+                },
+                error: function error(_error) {
+                    console.log(_error);
+                    $('#append-result').append("<span class='to-remove'><i class='fa fa-exclamation'></i>Ocorreu um erro!</span>");
+                    setTimeout(function () {
+                        $('.to-remove').remove();
+                    }, 2000);
+                }
+            });
         }
     },
     events: {
         "remove-row": function removeRow(row) {
+            for (var i = 0; i < row.cols.length; ++i) {
+                this.setModuleUnused(row.cols[i].module);
+            }
+
             this.rows.$remove(row);
         },
-        "remove-col": function removeCol(i, col) {
-            this.rows[i].cols.splice(col, 1);
+        "remove-col": function removeCol(lineIndex, col) {
+            this.setModuleUnused(col.module);
+            this.rows[lineIndex].cols.$remove(col);
         }
     },
     data: {
-        rows: [{
-            cols: [{
-                id: 1
-            }]
-        }, {
-            cols: [{
-                id: 2
-            }, {
-                id: 3
-            }]
-        }]
+        modules: modules,
+        rows: layout
+    },
+    computed: {
+        'modulesLeft': function modulesLeft() {
+            return this.modules.filter(function (o) {
+                return o.id != 0 && o.used == false;
+            }).length;
+        }
+    },
+    ready: function ready() {
+        for (var r = 0; r < this.rows.length; r++) {
+            for (var c = 0; c < this.rows[r].cols.length; c++) {
+                for (var m = 1; m < this.modules.length; ++m) {
+                    if (this.modules[m].id == this.rows[r].cols[c].module) {
+                        this.modules[m].used = true;
+                    }
+                }
+            }
+        }
     }
 });
 
@@ -10294,15 +10356,46 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = {
-    props: ['col', 'i'],
+    props: ['col', 'i', 'modules'],
+    inherit: true,
+    data: function data() {
+        return {
+            selected: this.col.module
+        };
+    },
+    computed: {
+        notUsed: function notUsed() {
+            var s = this.selected;
+            return this.modules.filter(function (o) {
+                return o.used == false || o.id == s;
+            });
+        }
+    },
     methods: {
         removeCol: function removeCol() {
-            this.$parent.removeCol(this.i);
+            this.$parent.removeCol(this.col);
+        }
+    },
+    watch: {
+        'selected': function selected(val, oldVal) {
+            for (var i in this.modules) {
+                if (this.modules[i].id != 0 && this.modules[i].id == val) {
+                    //set used for current
+                    this.col.module = val;
+                    this.modules[i].used = true;
+                } else {
+                    if (this.modules[i].id == oldVal) {
+                        //unset used the old val
+                        this.modules[i].used = false;
+                        this.col.module = 0;
+                    }
+                }
+            }
         }
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"alert alert-grey alert-dismissible\">\n    <button type=\"button\" class=\"close\" @click=\"removeCol\">×</button>\n    <h4><i class=\"icon fa fa-info\"></i> Coluna {{ i + 1 }}</h4>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"alert alert-grey alert-dismissible\">\n    <button type=\"button\" style=\"opacity: 1\" class=\"close\" @click=\"removeCol\" title=\"Apagar módulo\">×</button>\n    <h4><i class=\"icon fa fa-edit\"></i> Módulo {{ i + 1 }}</h4>\n\n    <select class=\"form-control\" v-model=\"selected\" style=\"width: 100%\">\n        <option v-for=\"m in notUsed\" :value=\"m.id\">{{ m.name }}</option>\n    </select>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -10332,7 +10425,7 @@ var _Col2 = _interopRequireDefault(_Col);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    props: ['row', 'i', 'rows'],
+    props: ['row', 'i', 'rows', 'modules'],
     components: {
         "my-col": _Col2.default
     },
@@ -10351,8 +10444,14 @@ exports.default = {
         },
         addColumn: function addColumn() {
             if (this.row.cols.length < 4) {
+
+                if (this.$parent.modulesLeft == 0) {
+                    alert("Não existem mais módulos disponiveis. Adicione mais!");
+                    return;
+                }
+
                 this.row.cols.push({
-                    title: "new col"
+                    module: 0
                 });
             } else {
                 alert("O máximo de colunas são 4.");
@@ -10361,7 +10460,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"box box-default\">\n    <div class=\"box-header with-border\">\n        <i class=\"fa fa-warning\"></i>\n        <h3 class=\"box-title\">Linha {{ i + 1 }}</h3>\n        <div class=\"pull-right\">\n            <div class=\"btn-group\">\n                <button type=\"button\" class=\"btn btn-default\" @click=\"addColumn\">Adicionar coluna</button>\n                <button type=\"button\" class=\"btn btn-default\" @click=\"removeLine(row)\">Remover Linha</button>\n            </div>\n        </div>\n    </div>\n    <div class=\"box-body\">\n        <div class=\"{{ kclass }}\" v-for=\"col in row.cols\">\n            <my-col :col=\"col\" :i=\"$index\"></my-col>\n        </div>\n    </div>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"box box-default line-box\">\n    <div class=\"box-header with-border\">\n        <i class=\"fa fa-bars\"></i>\n        <h3 class=\"box-title\">Linha {{ i + 1 }}</h3>\n        <div class=\"pull-right\">\n            <div class=\"btn-group\">\n                <button type=\"button\" class=\"btn btn-default\" @click=\"addColumn\"><i class=\"fa fa-plus\"></i> Adicionar coluna</button>\n                <button type=\"button\" class=\"btn btn-default\" @click=\"removeLine(row)\"><i class=\"fa fa-minus\"></i> Remover Linha</button>\n            </div>\n        </div>\n    </div>\n    <div class=\"box-body\">\n        <div class=\"{{ kclass }}\" v-for=\"col in row.cols\">\n            <my-col :col=\"col\" :modules.sync=\"modules\" :i=\"$index\"></my-col>\n        </div>\n    </div>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

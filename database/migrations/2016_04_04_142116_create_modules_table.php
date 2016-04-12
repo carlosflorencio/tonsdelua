@@ -14,8 +14,9 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('description');
             $table->integer('page_id')->nullable()->unsigned();
-            $table->enum('type', ['image', 'youtube', 'slideshow'])->default('image');
+            $table->enum('type', ['imagem', 'youtube', 'slideshow'])->default('imagem');
             $table->string('video')->nullable();
             $table->string('url_to')->nullable();
             $table->string('caption')->nullable();

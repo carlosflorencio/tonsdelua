@@ -15,6 +15,7 @@ Route::group(['as' => 'admin::', 'prefix' => 'backend', 'middleware' => 'web'], 
 
         # Pages
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'Admin\DashboardController@index']);
+        Route::post('products/{id}/save-layout', ['as' => 'save_layout', 'uses' => 'Admin\ProductsController@saveLayout']);
         Route::resource('products', 'Admin\ProductsController');
 
         Route::get('/', function() {

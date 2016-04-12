@@ -29,7 +29,8 @@ $factory->define(App\Image::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Module::class, function (Faker\Generator $faker) {
     return [
-        'type' => 'image'
+        'type' => 'imagem',
+        'description' => $faker->sentence(2)
     ];
 });
 
@@ -37,7 +38,6 @@ $factory->define(App\Page::class, function (Faker\Generator $faker) {
     return [
         'type' => 'product',
         'name' => $faker->name,
-        'slug' => $faker->slug,
-        'layout' => '{}'
+        'layout' => '[]'
     ];
 });
