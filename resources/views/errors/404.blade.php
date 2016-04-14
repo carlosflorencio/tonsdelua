@@ -22,7 +22,7 @@
             left: 50%;
             margin: -43px 0 0 -150px;
             position: absolute;
-            top: 50%;
+            top: 30%;
             width: 300px;
         }
 

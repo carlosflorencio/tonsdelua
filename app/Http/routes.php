@@ -66,10 +66,10 @@ Route::group(['middleware' => 'web'], function() {
 | Test Route
 |--------------------------------------------------------------------------
 */
-Route::get('test', function () {
-    $image = App\Image::find(1);
-    return $image->path;
-});
+//Route::get('test', function () {
+//    $image = App\Image::find(1);
+//    return $image->path;
+//});
 
 /*
 |--------------------------------------------------------------------------
