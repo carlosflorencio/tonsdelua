@@ -23,7 +23,7 @@ class ImageModuleController extends Controller
      */
     public function index()
     {
-        $data['modules'] = Module::imagem()->with('page', 'images')->orderBy('id', 'desc')->paginate(20);
+        $data['modules'] = Module::imagem()->with('page', 'images')->orderBy('id', 'desc')->paginate(10);
         
         return view('admin.pages.image.index', $data);
     }

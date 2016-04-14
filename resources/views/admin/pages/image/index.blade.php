@@ -26,8 +26,13 @@
                                 <tr>
                                     <th style="width: 10%" class="text-center">Opções</th>
                                     <th>Imagem</th>
-                                    <th style="width: 55%">Descrição</th>
-                                    <th style="width: 15%" class="text-center">Página/Produto Associado</th>
+                                    <th style="width: 45%">Descrição</th>
+                                    <th style="width: 15%" class="text-center">
+                                        <div data-toggle="tooltip" data-placement="left" title="Layout a que este módulo está associado">
+                                            <i class="fa fa-info" ></i>
+                                            Página/Produto Associado
+                                        </div>
+                                    </th>
                                 </tr>
                                 @forelse($modules as $module)
                                     <tr>

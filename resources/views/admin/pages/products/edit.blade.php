@@ -88,7 +88,9 @@
                                     </div>
 
                                     <div class="col-md-12 text-center " id="append-result">
-                                        <button class="btn btn-primary" @click="sendData">Guardar Layout</button>
+                                        <button class="btn btn-primary ladda-button" id="save-button" data-style="expand-left" @click="sendData">
+                                            <span class="ladda-label">Guardar Layout</span>
+                                        </button>
                                     </div>
                                 </div>
                                 <!-- /Layout tab -->
@@ -101,16 +103,11 @@
     </div>
 @stop
 
-@push('styles')
-<link rel="stylesheet" href="{{ asset('backend-assets/dist/css/plugins/select2.min.css') }}">
-@endpush
-
 @push('scripts')
-<script src="{{ asset('backend-assets/dist/js/plugins/select2.full.min.js') }}"></script>
 <script>
     var modules = {!! $modules !!};
-
     var layout = {!! $product->layout !!};
+    var url = "{{ url('backend/products/' . $product->id . '/save-layout') }}";
 </script>
 <script src="{{ asset('js/backend/app.js') }}"></script>
 <script>
@@ -128,6 +125,8 @@
             $('#tab_2').addClass('active');
             $('#tab2_link').addClass('active');
         }
+
+
     });
 </script>
 @endpush

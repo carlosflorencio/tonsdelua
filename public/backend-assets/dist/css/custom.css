@@ -8,6 +8,36 @@
 }
 
 /* ==========================================================================
+   Module layout
+   ========================================================================== */
+.module {
+    padding: 15px 35px 15px 15px;
+    margin-bottom:20px;
+    margin-top:0;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+
+.module .close:hover {
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+.module .close {
+    color: #000;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+
+.module h4 {
+    font-weight: 600;
+}
+.module h4 {
+    margin-top: 0;
+    color: inherit;
+}
+
+/* ==========================================================================
    Alerts
    ========================================================================== */
 .alert {

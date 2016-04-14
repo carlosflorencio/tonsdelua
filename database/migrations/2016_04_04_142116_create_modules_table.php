@@ -17,7 +17,7 @@ class CreateModulesTable extends Migration
             $table->string('description');
             $table->integer('page_id')->nullable()->unsigned();
             $table->enum('type', ['imagem', 'youtube', 'slideshow'])->default('imagem');
-            $table->string('video')->nullable();
+            $table->string('youtube')->nullable();
             $table->integer('url_to')->nullable()->unsigned();
             $table->string('caption')->nullable();
             $table->timestamps();

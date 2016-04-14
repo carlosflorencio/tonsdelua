@@ -10289,9 +10289,11 @@ new Vue({
                 }
             }
 
+            var l = Ladda.create(document.getElementById('save-button'));
+            l.start();
             $.ajax({
                 type: "POST",
-                url: "save-layout",
+                url: this.url,
                 data: { rows: JSON.stringify(this.rows) },
                 dataType: 'json',
                 success: function success(res) {
@@ -10300,6 +10302,7 @@ new Vue({
                     setTimeout(function () {
                         $('.to-remove').remove();
                     }, 2000);
+                    l.stop();
                 },
                 error: function error(_error) {
                     console.log(_error);
@@ -10307,6 +10310,7 @@ new Vue({
                     setTimeout(function () {
                         $('.to-remove').remove();
                     }, 2000);
+                    l.stop();
                 }
             });
         }
@@ -10326,7 +10330,8 @@ new Vue({
     },
     data: {
         modules: modules,
-        rows: layout
+        rows: layout,
+        url: url
     },
     computed: {
         'modulesLeft': function modulesLeft() {
@@ -10395,7 +10400,7 @@ exports.default = {
     }
 };
 if (module.exports.__esModule) module.exports = module.exports.default
-;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"alert alert-grey alert-dismissible\">\n    <button type=\"button\" style=\"opacity: 1\" class=\"close\" @click=\"removeCol\" title=\"Apagar módulo\">×</button>\n    <h4><i class=\"icon fa fa-edit\"></i> Módulo {{ i + 1 }}</h4>\n\n    <select class=\"form-control\" v-model=\"selected\" style=\"width: 100%\">\n        <option v-for=\"m in notUsed\" :value=\"m.id\">{{ m.name }}</option>\n    </select>\n</div>\n"
+;(typeof module.exports === "function"? module.exports.options: module.exports).template = "\n<div class=\"module alert-grey alert-dismissible\">\n    <button type=\"button\" style=\"opacity: 1\" class=\"close\" @click=\"removeCol\" title=\"Apagar módulo\">×</button>\n    <h4><i class=\"icon fa fa-edit\"></i> Módulo {{ i + 1 }}</h4>\n\n    <select class=\"form-control\" v-model=\"selected\" style=\"width: 100%\">\n        <option v-for=\"m in notUsed\" :value=\"m.id\">{{ m.name }}</option>\n    </select>\n</div>\n"
 if (module.hot) {(function () {  module.hot.accept()
   var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

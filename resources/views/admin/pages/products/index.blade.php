@@ -25,8 +25,19 @@
                                 <tbody>
                                 <tr>
                                     <th style="width: 10%" class="text-center">Opções</th>
-                                    <th style="width: 75%">Nome</th>
-                                    <th style="width: 15%" class="text-center">Módulos associados</th>
+                                    <th style="width: 65%">Nome</th>
+                                    <th style="width: 15%" class="text-center">
+                                        <div data-toggle="tooltip" data-placement="left" title="Módulos que existem no seu layout">
+                                            <i class="fa fa-info"></i>
+                                            Módulos associados
+                                        </div>
+                                    </th>
+                                    <th class="text-center">
+                                        <div data-toggle="tooltip" data-placement="left" title="Quantos módulos apontam para este produto">
+                                            <i class="fa fa-info" ></i>
+                                            Ligações
+                                        </div>
+                                    </th>
                                 </tr>
                                 @forelse($products as $product)
                                     <tr>
@@ -47,6 +58,7 @@
                                         </td>
                                         <td>{{ $product->name }}</td>
                                         <td class="text-center">{{ $product->modules->count() }}</td>
+                                        <td class="text-center">{{ $product->pointingCount }}</td>
                                     </tr>
                                 @empty
                                 <tr>

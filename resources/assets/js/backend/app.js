@@ -48,9 +48,11 @@ new Vue({
                 }
             }
 
+            var l = Ladda.create(document.getElementById('save-button'));
+            l.start();
             $.ajax({
                 type: "POST",
-                url: "save-layout",
+                url: this.url,
                 data: {rows: JSON.stringify(this.rows)},
                 dataType: 'json',
                 success: function (res) {
@@ -59,6 +61,7 @@ new Vue({
                     setTimeout(function() {
                         $('.to-remove').remove();
                     }, 2000);
+                    l.stop();
                 },
                 error: function (error) {
                     console.log(error);
@@ -66,6 +69,7 @@ new Vue({
                     setTimeout(function() {
                         $('.to-remove').remove();
                     }, 2000);
+                    l.stop();
                 }
             });
         }
@@ -85,7 +89,8 @@ new Vue({
     },
     data: {
         modules: modules,
-        rows: layout
+        rows: layout,
+        url: url
     },
     computed: {
         'modulesLeft': function () {

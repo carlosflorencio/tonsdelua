@@ -34,6 +34,13 @@ Form::macro('textField', function($name, $label = null, $value = null, $attribut
     return fieldWrapper($name, $label, $element, $size, $attributes);
 });
 
+Form::macro('urlField', function($name, $label = null, $value = null, $attributes = array(), array $size = [] )
+{
+    $element = Form::url($name, $value, fieldAttributes($name, $attributes));
+
+    return fieldWrapper($name, $label, $element, $size, $attributes);
+});
+
 Form::macro('passwordField', function($name, $label = null, $attributes = array(), array $size = [])
 {
     $element = Form::password($name, fieldAttributes($name, $attributes));

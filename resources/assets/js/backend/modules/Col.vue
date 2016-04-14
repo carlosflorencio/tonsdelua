@@ -8,7 +8,7 @@
 </style>
 
 <template>
-    <div class="alert alert-grey alert-dismissible">
+    <div class="module alert-grey alert-dismissible">
         <button type="button" style="opacity: 1" class="close" @click="removeCol" title="Apagar módulo">×</button>
         <h4><i class="icon fa fa-edit"></i> Módulo {{ i + 1 }}</h4>
 

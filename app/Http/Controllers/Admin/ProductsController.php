@@ -23,7 +23,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $data['products'] = Page::where('type', 'product')->with('modules')->orderBy('id', 'desc')->paginate(20);
+        $data['products'] = Page::where('type', 'product')->with('modules', 'pointing')->orderBy('id', 'desc')->paginate(20);
 
         return view('admin.pages.products.index', $data);
     }

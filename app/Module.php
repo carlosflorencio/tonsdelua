@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
-    protected $fillable = ['description', 'type', 'video', 'url_to', 'caption', 'page_id'];
+    protected $fillable = ['description', 'type', 'youtube', 'url_to', 'caption', 'page_id'];
 
     /*
     |--------------------------------------------------------------------------

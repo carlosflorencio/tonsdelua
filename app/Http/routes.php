@@ -22,13 +22,21 @@ Route::group(['as' => 'admin::', 'prefix' => 'backend', 'middleware' => 'web'], 
         Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@logout']);
 
         # Pages
-        Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'Admin\DashboardController@index']);
         Route::post('products/{id}/save-layout', ['as' => 'save_layout', 'uses' => 'Admin\ProductsController@saveLayout']);
         Route::resource('products', 'Admin\ProductsController');
         Route::resource('modules/image', 'Admin\ImageModuleController');
+        Route::resource('modules/slideshow', 'Admin\SlideshowModuleController');
+        Route::resource('modules/youtube', 'Admin\YoutubeModuleController');
+
+        Route::post('pages/{id}/save-layout', 'Admin\PagesController@saveLayout');
+        Route::get('pages/novidades', ['as' => 'novidades', 'uses' => 'Admin\PagesController@novidades']);
+        Route::get('pages/tendencias', ['as' => 'tendencias', 'uses' => 'Admin\PagesController@tendencias']);
+        Route::get('pages/mulher', ['as' => 'mulher', 'uses' => 'Admin\PagesController@mulher']);
+        Route::get('pages/homem', ['as' => 'homem', 'uses' => 'Admin\PagesController@homem']);
+        Route::get('pages/marcas', ['as' => 'marcas', 'uses' => 'Admin\PagesController@marcas']);
 
         Route::get('/', function() {
-            return Redirect::route('admin::dashboard');
+            return Redirect::route('admin::backend.products.index');
         });
     });
 
@@ -41,9 +49,7 @@ Route::group(['as' => 'admin::', 'prefix' => 'backend', 'middleware' => 'web'], 
 |--------------------------------------------------------------------------
 */
 Route::get('/', function () {
-
-    return Redirect::route('admin::dashboard');
-//    return view('pages.home');
+    return view('pages.home');
 });
 
 /*
