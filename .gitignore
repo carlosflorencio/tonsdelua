@@ -8,6 +8,7 @@ Homestead.json
 # Laravel 5 & Lumen specific
 bootstrap/cache/
 storage/
+/public/upload/
 .env.*.php
 .env.php
 .env
