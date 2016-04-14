@@ -23,7 +23,6 @@ $(document).ready(function () {
     $('.slide').slippry({
         transition: 'horizontal',
         speed: 400
-
     });
 
 });

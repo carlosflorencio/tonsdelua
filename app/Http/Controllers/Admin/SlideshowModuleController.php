@@ -35,7 +35,7 @@ class SlideshowModuleController extends Controller
     public function create()
     {
         $data['to'] = Page::lists('name', 'id')->toArray();
-        array_unshift($data['to'], "Sem acção no click");
+        $data['to'] = [0 => "Sem acção no click"] + $data['to'];
 
         return view('admin.pages.slideshow.create', $data);
     }
@@ -86,7 +86,7 @@ class SlideshowModuleController extends Controller
     {
         $data['module'] = Module::findOrFail($id);
         $data['to'] = Page::lists('name', 'id')->toArray();
-        array_unshift($data['to'], "Sem acção no click");
+        $data['to'] = [0 => "Sem acção no click"] + $data['to'];
 
         return view('admin.pages.slideshow.edit', $data);
     }

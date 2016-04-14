@@ -1,15 +1,25 @@
 <!-- Full size image -->
-<div class="alt-grid">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#">
-                    <div data-min-width-0='<img src={{ url('upload/images_mobile/1.jpg') }} alt="image @ 320+ viewports" class="img-responsive">'
-                         data-min-width-768='<img src={{ url('upload/images_full/1.jpg') }} alt="image @ 961+ viewports" class="img-responsive">'>
-                    </div>
-                </a>
+@if($module->url_to && !$module->caption)
+    <a href="{{ makeUrlToPage($module->url_to) }}">
+@endif
+        @if($module->caption)
+        <div class="hovereffect">
+        @endif
+            <img src="{{ $module->images[0]->link() }}"
+                 data-min-width-768="{{ $module->images[0]->link() }}"
+                 data-min-width-0="{{ $module->images[0]->link() . '?w=768' }}"
+                 class="img-responsive" alt="">
+            @if($module->caption)
+                <div class="overlay">
+                    <h2>{{ $module->caption }}</h2>
+                    @if($module->url_to)
+                        <a class="info" href="{{ makeUrlToPage($module->url_to) }}">Ir para o Link</a>
+                    @endif
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+            @endif
+
+@if($module->url_to && !$module->caption)
+    </a>
+@endif
 <!-- /Full size image -->

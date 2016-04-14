@@ -10384,6 +10384,7 @@ exports.default = {
     watch: {
         'selected': function selected(val, oldVal) {
             for (var i in this.modules) {
+                console.log("ciclo: " + i);
                 if (this.modules[i].id != 0 && this.modules[i].id == val) {
                     //set used for current
                     this.col.module = val;
@@ -10392,7 +10393,10 @@ exports.default = {
                     if (this.modules[i].id == oldVal) {
                         //unset used the old val
                         this.modules[i].used = false;
-                        this.col.module = 0;
+                    } else {
+                        if (this.modules[i].id == 0) {
+                            this.col.module = 0;
+                        }
                     }
                 }
             }

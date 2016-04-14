@@ -1,29 +1,18 @@
-<div class="alt-grid">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="slide-container">
-                    <ul class="slide">
-                        <li>
-                            <a href="#">
-                                <img src="http://placehold.it/1920x800" alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="http://placehold.it/1920x800" alt="">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="http://placehold.it/1920x800" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
+<div class="slide-container">
+    <ul class="slide">
+        @foreach($module->images as $image)
+            <li>
+                @if($module->url_to)
+                    <a href="{{ makeUrlToPage($module->url_to) }}">
+                @endif
+                    <img src="{{ $image->link()  }}"
+                         data-min-width-768="{{ $image->link() }}"
+                         data-min-width-0="{{ $image->link() . '?w=768' }}"
+                         alt="">
+                @if($module->url_to)
+                    </a>
+                @endif
+            </li>
+        @endforeach
+    </ul>
 </div>

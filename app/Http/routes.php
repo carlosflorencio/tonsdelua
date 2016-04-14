@@ -48,8 +48,14 @@ Route::group(['as' => 'admin::', 'prefix' => 'backend', 'middleware' => 'web'], 
 | Front End
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
-    return view('pages.home');
+Route::group(['middleware' => 'web'], function() {
+    Route::get('/', 'PagesController@index');
+    Route::get('tendencias', 'PagesController@tendencias');
+    Route::get('mulher', 'PagesController@mulher');
+    Route::get('homem', 'PagesController@homem');
+    Route::get('marcas', 'PagesController@marcas');
+    Route::get('contacto', 'PagesController@contacto');
+    Route::post('contacto', 'PagesController@contacto_send');
 });
 
 /*

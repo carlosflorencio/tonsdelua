@@ -7,18 +7,30 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-                <img src="{{ url('img/tonsdelua_l.png') }}" alt="">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ url('img/tonsdelua_l_novo.png') }}" alt="">
             </a>
         </div>
 
         <div class="collapse navbar-collapse fix-height" id="menu-collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="#">Marcas</a>
+                <li class="{{ activePage('/') }}">
+                    <a href="{{ url('/') }}">Novidades</a>
                 </li>
-                <li>
-                    <a href="#">Contactos</a>
+                <li class="{{ activePage('tendencias') }}">
+                    <a href="{{ url('tendencias') }}">Tendencias</a>
+                </li>
+                <li class="{{ activePage('mulher') }}">
+                    <a href="{{ url('mulher') }}">Mulher</a>
+                </li>
+                <li class="{{ activePage('homem') }}">
+                    <a href="{{ url('homem') }}">Homem</a>
+                </li>
+                <li class="{{ activePage('marcas') }}">
+                    <a href="{{ url('marcas') }}">Marcas</a>
+                </li>
+                <li class="{{ activePage('contacto') }}">
+                    <a href="{{ url('contacto') }}">Contacto</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right social">
