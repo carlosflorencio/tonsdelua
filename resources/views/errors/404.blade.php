@@ -53,6 +53,7 @@
     </style>
 </head>
 <body>
+<img src="{{ asset('img/logo.png') }}" alt="">
 <h1>Oooops!</h1>
 <p>Esta página já não se encontra disponivel!</p>
 <p><a href="{{ url('/') }}">Voltar ao Inicio</a></p>
