@@ -1,7 +1,6 @@
 <?php
 
 function makeUrlToPage($id) {
-    $res = "";
     switch ($id) {
         case 1:
             $res = "/";

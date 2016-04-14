@@ -52,7 +52,7 @@
                                                data-method="delete" title="Apagar">
                                                 <i class="fa fa-trash"></i>
                                             </a>
-                                            <a href="{{ url('produto/' . $product->id.'/' . str_slug($product->name)) }}">
+                                            <a href="{{ url('produto/' . $product->id.'/' . str_slug($product->name)) }}" target="_blank">
                                                 <i class="fa fa-external-link"></i>
                                             </a>
                                         </td>
