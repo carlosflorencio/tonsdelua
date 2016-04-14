@@ -14,6 +14,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
+    <link rel="stylesheet" href="{{ url('backend-assets/dist/css/plugins/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ url('backend-assets/dist/css/plugins/ladda-themeless.min.css') }}">
     <link rel="stylesheet" href="{{ url('backend-assets/dist/css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ url('backend-assets/dist/css/skins/skin-black.min.css') }}">
 
@@ -54,6 +56,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{ url('backend-assets/dist/js/app.min.js') }}"></script>
     <script src="{{ url('backend-assets/dist/js/anchorMethod.js') }}"></script>
+    <script src="{{ url('backend-assets/dist/js/plugins/select2.full.min.js') }}"></script>
+    <script src="{{ url('backend-assets/dist/js/plugins/spin.min.js') }}"></script>
+    <script src="{{ url('backend-assets/dist/js/plugins/ladda.min.js') }}"></script>
+    <script>
+        //alert auto close
+        $(".alert").delay(4000).slideUp(200, function() {
+            $(this).alert('close');
+        });
+        //alert close on click
+        $(".alert").on('click', function () {
+           $(this).remove();
+        });
+
+        $('.select2').select2();
+
+        Ladda.bind('.loading-state', { timeout: 3000 } );
+    </script>
     @stack('scripts')
 </body>
 </html>

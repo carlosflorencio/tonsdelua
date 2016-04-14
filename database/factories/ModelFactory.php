@@ -22,8 +22,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Image::class, function (Faker\Generator $faker) {
     return [
-        'path' => $faker->imageUrl(),
-        'caption' => $faker->optional()->sentence()
+        'path' => $faker->imageUrl()
     ];
 });
 

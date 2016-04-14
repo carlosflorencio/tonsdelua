@@ -18,11 +18,14 @@ class CreateModulesTable extends Migration
             $table->integer('page_id')->nullable()->unsigned();
             $table->enum('type', ['imagem', 'youtube', 'slideshow'])->default('imagem');
             $table->string('video')->nullable();
-            $table->string('url_to')->nullable();
+            $table->integer('url_to')->nullable()->unsigned();
             $table->string('caption')->nullable();
             $table->timestamps();
 
             $table->foreign('page_id')
+                ->references('id')->on('pages');
+
+            $table->foreign('url_to')
                 ->references('id')->on('pages');
         });
     }

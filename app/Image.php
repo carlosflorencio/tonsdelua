@@ -4,9 +4,11 @@ namespace App;
 
 use File;
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class Image extends Model
 {
+    protected $fillable = ['path', 'module_id'];
 
     /*
     |--------------------------------------------------------------------------
@@ -25,8 +27,8 @@ class Image extends Model
     public function delete()
     {
         // Delete image
-        if (File::exists(public_path($this->path))) {
-            File::delete(public_path($this->path));
+        if (Storage::disk('images')->exists($this->path)) {
+            Storage::disk('images')->delete($this->path);
         }
 
         return parent::delete();
@@ -34,16 +36,17 @@ class Image extends Model
 
     /*
     |--------------------------------------------------------------------------
-    | Mutators
+    | Methods
     |--------------------------------------------------------------------------
     */
-    public function getPathAttribute($value)
+    public function link()
     {
         // If image path is an url
-        if(filter_var($value, FILTER_VALIDATE_URL)) {
-            return $value;
+        if(filter_var($this->path, FILTER_VALIDATE_URL)) {
+            return $this->path;
         }
 
-        return asset($value);
+        return asset("img/" . $this->path);
     }
+
 }

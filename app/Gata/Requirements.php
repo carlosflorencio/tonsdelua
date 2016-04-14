@@ -9,7 +9,7 @@ class Requirements
     |--------------------------------------------------------------------------
     */
     private static $php_version = '5.5.9'; //minimum
-    private static $required_extensions = ['fileinfo', 'pdo_mysql', 'mcrypt', 'openssl', 'mbstring', 'tokenizer'];
+    private static $required_extensions = ['fileinfo', 'pdo_mysql', 'mcrypt', 'openssl', 'mbstring', 'tokenizer', 'exif'];
     private static $optional_extensions = ['curl', 'gd', 'iconv'];
     private static $writable_dirs = ['public/upload', 'storage', 'bootstrap/cache'];
 

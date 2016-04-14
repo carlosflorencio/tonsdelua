@@ -32,7 +32,7 @@
 
                                         {!! Form::textField("nome", "Nome", old('nome', $product->name)) !!}
 
-                                        {!! Form::submitForm("Guardar alterações") !!}
+                                        {!! Form::submitFormLoading("Guardar alterações") !!}
 
                                         {!! Form::close() !!}
                                     </div>

@@ -6,3 +6,47 @@
 .line-box {
     border: 2px solid #d2d6de !important;
 }
+
+/* ==========================================================================
+   Alerts
+   ========================================================================== */
+.alert {
+    padding: 2px 7px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 0;
+    margin-top: 12px;
+}
+
+.alert-info,
+.alert-danger,
+.alert-warning,
+.alert-success {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.alert-info {
+    color: #009cc8 !important;
+}
+
+.alert-danger {
+    color: #af1500 !important;
+}
+
+.alert-warning {
+    color: #afa700 !important;
+}
+
+.alert-success {
+    color: #008826 !important;
+}
+
+/* ==========================================================================
+   Ladda buttons fix spinner border
+   ========================================================================== */
+.ladda-button:focus {outline:none;}
+.ladda-button::-moz-focus-inner {border:0;}
+.ladda-button {
+    overflow: hidden;
+}

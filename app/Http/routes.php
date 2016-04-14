@@ -2,6 +2,14 @@
 
 /*
 |--------------------------------------------------------------------------
+| Images - Glide
+|--------------------------------------------------------------------------
+*/
+Route::get('img/{path}', 'GlideImageController@serve')->where('path', '.+');
+
+
+/*
+|--------------------------------------------------------------------------
 | Back End
 |--------------------------------------------------------------------------
 */
@@ -17,6 +25,7 @@ Route::group(['as' => 'admin::', 'prefix' => 'backend', 'middleware' => 'web'], 
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'Admin\DashboardController@index']);
         Route::post('products/{id}/save-layout', ['as' => 'save_layout', 'uses' => 'Admin\ProductsController@saveLayout']);
         Route::resource('products', 'Admin\ProductsController');
+        Route::resource('modules/image', 'Admin\ImageModuleController');
 
         Route::get('/', function() {
             return Redirect::route('admin::dashboard');

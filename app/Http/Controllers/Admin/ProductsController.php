@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Laracasts\Flash\Flash;
 use Redirect;
 
 class ProductsController extends Controller
@@ -22,7 +23,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $data['products'] = Page::where('type', 'product')->with('modules')->orderBy('created_at', 'desc')->paginate(20);
+        $data['products'] = Page::where('type', 'product')->with('modules')->orderBy('id', 'desc')->paginate(20);
 
         return view('admin.pages.products.index', $data);
     }
@@ -49,6 +50,8 @@ class ProductsController extends Controller
             'type' => 'product',
             'name' => $request->input('nome')
         ]);
+
+        Flash::success('Produto criado com sucesso!');
 
         return redirect(route('admin::backend.products.edit', [$product->id, '#layout']));
     }
@@ -110,7 +113,7 @@ class ProductsController extends Controller
         $product->name = $request->input('nome');
         $product->save();
 
-
+        Flash::success('Produto editado com sucesso!');
         return back();
     }
 

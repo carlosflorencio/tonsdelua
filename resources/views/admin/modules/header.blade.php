@@ -12,6 +12,10 @@
             <span class="sr-only">Toggle navigation</span>
         </a>
 
+        <div style="float: left">
+            @include('flash::message')
+        </div>
+
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- User Account: style can be found in dropdown.less -->
