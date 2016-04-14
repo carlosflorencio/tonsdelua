@@ -13,6 +13,7 @@ class PagesController extends Controller
     public function index() {
         $data['page'] = Page::page()->with('modules')->find(1);
         $data['rows'] = json_decode($data['page']->layout);
+        $data['title'] = "Novidades";
 
         return view('pages.layout', $data);
     }
@@ -20,6 +21,7 @@ class PagesController extends Controller
     public function tendencias() {
         $data['page'] = Page::page()->with('modules')->find(2);
         $data['rows'] = json_decode($data['page']->layout);
+        $data['title'] = "Tendencias";
 
         return view('pages.layout', $data);
     }
@@ -27,6 +29,7 @@ class PagesController extends Controller
     public function mulher() {
         $data['page'] = Page::page()->with('modules')->find(3);
         $data['rows'] = json_decode($data['page']->layout);
+        $data['title'] = "Mulher";
 
         return view('pages.layout', $data);
     }
@@ -34,6 +37,7 @@ class PagesController extends Controller
     public function homem() {
         $data['page'] = Page::page()->with('modules')->find(4);
         $data['rows'] = json_decode($data['page']->layout);
+        $data['title'] = "Homem";
 
         return view('pages.layout', $data);
     }
@@ -41,6 +45,7 @@ class PagesController extends Controller
     public function marcas() {
         $data['page'] = Page::page()->with('modules')->find(5);
         $data['rows'] = json_decode($data['page']->layout);
+        $data['title'] = "Marcas";
 
         return view('pages.layout', $data);
     }
@@ -50,7 +55,7 @@ class PagesController extends Controller
     }
 
     public function contacto_send(ContactRequest $request) {
-        $admin = "carlosmflorencio@gmail.com";
+        $admin = "kimagem@gmail.com";
         $name = $request->nome;
         $email = $request->email;
         $subject = $request->assunto;
@@ -69,6 +74,7 @@ class PagesController extends Controller
     public function product($id) {
         $data['page'] = Page::product()->with('modules')->findOrFail($id);
         $data['rows'] = json_decode($data['page']->layout);
+        $data['title'] = $data['page']->name;
 
         return view('pages.layout', $data);
     }

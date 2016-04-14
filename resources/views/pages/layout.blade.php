@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Inicio')
+@section('title', $title)
 
 @section('content')
 
