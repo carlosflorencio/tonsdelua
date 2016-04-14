@@ -49,13 +49,16 @@ Route::group(['as' => 'admin::', 'prefix' => 'backend', 'middleware' => 'web'], 
 |--------------------------------------------------------------------------
 */
 Route::group(['middleware' => 'web'], function() {
-    Route::get('/', 'PagesController@index');
+    Route::get('produto/{id}/{slug?}', 'PagesController@product');
+
     Route::get('tendencias', 'PagesController@tendencias');
     Route::get('mulher', 'PagesController@mulher');
     Route::get('homem', 'PagesController@homem');
     Route::get('marcas', 'PagesController@marcas');
     Route::get('contacto', 'PagesController@contacto');
     Route::post('contacto', 'PagesController@contacto_send');
+
+    Route::get('/', 'PagesController@index');
 });
 
 /*

@@ -35,7 +35,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right social">
                 <li>
-                    <a href="#" class="social">
+                    <a href="https://www.facebook.com/tonslua/" target="_blank" class="social">
                         <img src="{{ url('img/facebook.png') }}" alt="">
                     </a>
                 </li>

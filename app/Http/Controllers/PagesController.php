@@ -65,4 +65,11 @@ class PagesController extends Controller
         Flash::success('Contacto enviado com sucesso!');
         return redirect('contacto');
     }
+
+    public function product($id) {
+        $data['page'] = Page::product()->with('modules')->findOrFail($id);
+        $data['rows'] = json_decode($data['page']->layout);
+
+        return view('pages.layout', $data);
+    }
 }
